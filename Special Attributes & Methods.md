@@ -1,6 +1,6 @@
 # Special Attributes & Methods
 Python中特殊的属性和方法
-## Attributes
+## Attributes（属性）
 ### `__slots__`
 用于限制实例的属性，在定义class的时候，定义一个特殊的`__slots__`变量，来限制该class实例能添加的属性
 试图绑定其他属性将得到AttributeError的错误，`__slots__`定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
@@ -10,7 +10,7 @@ class Student(object):
      __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
 ```
 ***
-## Methods
+## Methods（方法）
 ### `__str__()`&`__repr__()`
 * 相同点：都是用于用于返回对象的字符串表达式 
 * 不同点：`__str__()`返回用户看到的字符串（执行print时会调用），而`__repr__()`返回程序开发者看到的字符串
@@ -42,4 +42,33 @@ class Fib(object): #以斐波那契数列为例
 for n in Fib():
     print(n)
 ```
-### 
+***
+### `__getattr__`
+动态返回一个属性，当调用不存在的属性时，Python解释器会试图调用`__getattr__()`来尝试获得属性  
+只有在没有找到属性的情况下，才调用`__getattr__`，已有的属性，比如name，不会在`__getattr__`中查找
+```python
+class Student(object):
+
+    def __getattr__(self, attr):
+        if attr=='age':
+            return lambda: 25
+        raise AttributeError('\'Student\' object has no attribute \'%s\'' % attr)
+```
+***
+### `__call__`
+直接调用对象本身，类似对一个函数进行调用，并且可以定义参数  
+通过`callable()`函数，可以判断一个对象是否是“可调用”对象
+```python
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('My name is %s.' % self.name)
+```
+调用：
+```python
+s = Student('George')
+s() 
+```
+***

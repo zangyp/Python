@@ -1,6 +1,15 @@
 # Special Attributes & Methods
 Python中特殊的属性和方法
 ## Attributes（属性）
+### `__name__`
+每个模块都有一个名称，可以通过使用模块的`__name__`属性来判断它是为自己所用还是从其它从的模块中导入而来
+```python
+if __name__ == '__main__':
+print('This program is being run by itself')
+else:
+print('I am being imported from another module')
+```
+***
 ### `__slots__`
 用于限制实例的属性，在定义class的时候，定义一个特殊的`__slots__`变量，来限制该class实例能添加的属性
 试图绑定其他属性将得到AttributeError的错误，`__slots__`定义的属性仅对当前类实例起作用，对继承的子类是不起作用的

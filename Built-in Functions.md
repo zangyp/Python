@@ -29,9 +29,37 @@ print('{0:_^11}'.format('hello'))
 print('{name} wrote {book}'.format(name='Swaroop', book='A Byte of Python'))
 ```
 `print`总是会以一个不可见的“新一行”字符（`\n`）结尾  
-因此重复调用`print`将会在相互独立的一行中分别打印,为防止打印过程中出现这一换行符，可以通过 end 指定其应以空白结尾：  
+因此重复调用`print`将会在相互独立的一行中分别打印，为防止打印过程中出现这一换行符，可以通过 end 指定其应以空白结尾：  
 ```python
 print('a', end='')
 print('b', end='') # 输出为：ab
+```
+***
+### `dir([obj])`
+`dir()`函数能够返回由对象所定义的名称列表。  
+如果这一对象是一个模块，则该列表会包括函数内所定义的函数、类与变量。  
+该函数接受参数，如果参数是模块名称，函数将返回这一指定模块的名称列表。  
+如果没有提供参数，函数将返回当前模块的名称列表。
+```python
+$ python
+>>> import sys
+# 给出 sys 模块中的属性名称
+>>> dir(sys)
+['__displayhook__', '__doc__',
+'argv', 'builtin_module_names',
+'version', 'version_info']
+# only few entries shown here
+# 给出当前模块的属性名称
+>>> dir()
+['__builtins__', '__doc__',
+'__name__', '__package__']
+# 创建一个新的变量 'a'
+>>> a = 5
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'a']
+# 删除或移除一个名称
+>>> del a
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
 ```
 ***

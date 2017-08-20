@@ -72,3 +72,26 @@ s = Student('George')
 s() 
 ```
 ***
+### `__init__`
+`__init__`方法负责对象的初始化，系统执行该方法前，其实该对象已经存在了
+```python
+def __init__(self):
+    print("__init__ ")
+    print(self)
+    super(A, self).__init__()
+```
+***
+### `__new__`
+在创建一个实例的时候，`__new__`方法先被调用，返回一个实例对象，接着才是`__init__`被调用  
+`__new__`方法的返回值就是类的实例对象，这个实例对象会传递给`__init__`方法中定义的self参数，以便实例对象可以被正确地初始化  
+如果`__new__`方法不返回值（或者说返回None）那么`__init__`将不会得到调用，因为实例对象都没创建出来，调用`__init__`也没什么意义  
+此外，Python还规定，`__init__`只能返回None值，否则报错  
+可以用于实现单例模式：
+```python
+class BaseController(object):
+    _singleton = None
+    def __new__(cls, *a, **k):
+        if not cls._singleton:
+            cls._singleton = object.__new__(cls, *a, **k)
+        return cls._singleton
+```

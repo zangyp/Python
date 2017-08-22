@@ -73,7 +73,7 @@ os模块用于处理文件和目录
 # 删掉一个目录:
 >>> os.rmdir('/Users/michael/testdir')
 
-# 把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名,
+# 把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名,合并、拆分路径的函数并不要求目录和文件要真实存在，它们只对字符串进行操作
 >>> os.path.split('/Users/michael/testdir/file.txt')
 ('/Users/michael/testdir', 'file.txt')
 >>> os.path.splitext('/path/to/file.txt')

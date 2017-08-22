@@ -1,18 +1,22 @@
 # os
 os模块用于处理文件和目录
+### `os.name()`
+操作系统类型：如果是posix，说明系统是Linux、Unix或Mac OS X，如果是nt，就是Windows系统
+### `os.environ()`&`os.environ.get('key')`
+获取操作系统中的环境变量
 ***
-### os.getcwd() 
+### `os.getcwd()` 
 用于返回当前工作目录
 ***
-### os.mkdir(path[, mode])
+### `os.mkdir(path[, mode])`
 用于以数字权限模式创建目录，默认的模式为 0777 (八进制)
-* path--要创建的目录
-* mode--要为目录设置的权限数字模式
+* path:要创建的目录
+* mode:要为目录设置的权限数字模式
 ***
-### os.chmod(path,mode)
+### `os.chmod(path,mode)`
 用于更改文件或目录的权限
-* path--文件名路径或目录路径
-* mode--可用以下选项按位或操作生成，
+* path:文件名路径或目录路径
+* mode:可用以下选项按位或操作生成，
 目录的读权限表示可以获取目录里文件名列表，
 执行权限表示可以把工作目录切换到此目录，
 删除添加目录里的文件必须同时有写和执行权限，
@@ -35,23 +39,23 @@ os模块用于处理文件和目录
   * stat.S_IREAD: windows下设为只读
   * stat.S_IWRITE: windows下取消只读
 ***
-### os.chdir(path) 
+### `os.chdir(path)`
 用于改变当前工作目录到指定的路径
-* path--要切换到的新路径
+* path:要切换到的新路径
 ***
-### os.rmdir(path)
+### `os.rmdir(path)`
 用于删除指定路径的目录，仅当这文件夹是空的才可以，否则抛出OSError
-* path--要删除的目录路径
+* path:要删除的目录路径
 ***
-### os.remove()
+### `os.remove()`
 用于删除指定路径的文件，如果指定的路径是一个目录，将抛出OSError，在Unix, Windows中有效
-* path--要移除的文件路径
+* path:要移除的文件路径
 ***
-### os.path.join(path1[, path2[, ...]])
+### `os.path.join(path1[, path2[, ...]])`
 把目录和文件名合成一个路径
-* path--要合成的路径名或文件名
+* path:要合成的路径名或文件名
 ***
-### os.system(cmd)
+### `os.system(cmd)`
 执行命令行commend
-* cmd--要执行的命令
+* cmd:要执行的命令
 ***

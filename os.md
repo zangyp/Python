@@ -2,6 +2,7 @@
 os模块用于处理文件和目录
 ### `os.name()`
 操作系统类型：如果是posix，说明系统是Linux、Unix或Mac OS X，如果是nt，就是Windows系统
+***
 ### `os.environ()`&`os.environ.get('key')`
 获取操作系统中的环境变量
 ***
@@ -47,7 +48,7 @@ os模块用于处理文件和目录
 用于删除指定路径的目录，仅当这文件夹是空的才可以，否则抛出OSError
 * path:要删除的目录路径
 ***
-### `os.remove()`
+### `os.remove(path)`
 用于删除指定路径的文件，如果指定的路径是一个目录，将抛出OSError，在Unix, Windows中有效
 * path:要移除的文件路径
 ***
@@ -58,4 +59,24 @@ os模块用于处理文件和目录
 ### `os.system(cmd)`
 执行命令行commend
 * cmd:要执行的命令
+***
+### `os.path.adspath('.')`&`os.path.join(cur_path,tar_path)`&`os.path.split()`
+```python
+# 查看当前目录的绝对路径:
+>>> os.path.abspath('.')
+'/Users/michael'
+# 在某个目录下创建一个新目录，首先把新目录的完整路径表示出来:
+>>> os.path.join('/Users/michael', 'testdir')
+'/Users/michael/testdir'
+# 然后创建一个目录:
+>>> os.mkdir('/Users/michael/testdir')
+# 删掉一个目录:
+>>> os.rmdir('/Users/michael/testdir')
+
+# 把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名,
+>>> os.path.split('/Users/michael/testdir/file.txt')
+('/Users/michael/testdir', 'file.txt')
+>>> os.path.splitext('/path/to/file.txt')
+('/path/to/file', '.txt')
+```
 ***

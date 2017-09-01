@@ -113,3 +113,29 @@ $ python
 with open('/path/to/file', 'r') as f: # 这种方式不必调用f.close()
     print(f.read())
 ```
+***
+### `@classmethod`&`@staticmethod`
+一般来说，要使用某个类的方法，需要先实例化一个对象再调用方法,而使用`@staticmethod`或`@classmethod`，就可以不需要实例化，直接类名.方法名()来调用
+* `@staticmethod`不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样
+* `@classmethod`不需要self参数，但第一个参数需要是表示自身类的cls参数
+```python
+class A(object):  
+    bar = 1  
+    def foo(self):  
+        print 'foo'  
+ 
+    @staticmethod  
+    def static_foo():  
+        print 'static_foo'  
+        print A.bar  
+ 
+    @classmethod  
+    def class_foo(cls):  
+        print 'class_foo'  
+        print cls.bar  
+        cls().foo()  
+  
+A.static_foo()  
+A.class_foo()  
+```
+***

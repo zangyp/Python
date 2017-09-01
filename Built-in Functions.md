@@ -17,9 +17,13 @@
 * iterable:可迭代对象，如列表
 * start:定相加的参数，如果没有设置这个值，默认为0
 ```python
->>> sum([0,1,2,3,4], 2)      # 列表计算总和后再加 2
+>>> sum([0,1,2,3,4], 2)  # 列表计算总和后再加 2
 12
 ```
+***
+### `pow(x, y[, z])`
+计算x的y次方(等价于`x**y`)，如果z在存在，则再对结果进行取模，其结果等效于`pow(x,y) %z`  
+*注意*：pow() 通过内置的方法直接调用，内置方法会把参数作为整型，而 math 模块则会把参数转换为 float
 ***
 ### `len(s)`
 返回对象（字符、列表、元组等）长度或项目个数
@@ -30,6 +34,18 @@
 * start:计数从start开始。默认是从0开始。例如`range(5)`等价于`range(0,5)`
 * end:计数到end结束，但不包括end。例如：`range(0,5)`是[0,1,2,3,4]没有5
 * step:步长，默认为1。例如：`range(0,5)`等价于`range(0,5,1)`
+***
+### `tuple(seq)`
+将列表转换为元组
+* seq:要转换为元组的序列
+```python
+>>> tuple({1:2,3:4})  #针对字典 会返回字典的key组成的tuple
+(1,3)
+```
+***
+### `list(seq)`
+将元组转换为列表
+* seq:要转换为列表的元组
 ***
 ### `str(obj)`
 将对象转化为便于阅读的形式（返回一个对象的string格式）
@@ -114,8 +130,40 @@ with open('/path/to/file', 'r') as f: # 这种方式不必调用f.close()
     print(f.read())
 ```
 ***
+### `isinstance()`&`type()`
+`type(name[, bases, dict])`如果只传入第一个参数则返回对象的类型，传入三个参数返回新的类型对象
+* name:类的名称
+* bases:基类的元组
+* dict:字典，类内定义的命名空间变量  
+`isinstance()`与`type()`区别：
+* `type()` 不会认为子类是一种父类类型，不考虑继承关系
+* `isinstance()` 会认为子类是一种父类类型，考虑继承关系
+如果要判断两个类型是否相同推荐使用 `isinstance()`
+```python
+# 一个参数实例
+>>> type(1)
+<type 'int'>
+>>> type('runoob')
+<type 'str'>
+>>> type([2])
+<type 'list'>
+>>> type({0:'zero'})
+<type 'dict'>
+>>> x = 1          
+>>> type( x ) == int    # 判断类型是否相等
+True
+ 
+# 三个参数
+>>> class X(object):
+...     a = 1
+...
+>>> X = type('X', (object,), dict(a=1))  # 产生一个新的类型 X
+>>> X
+<class '__main__.X'>
+```
+***
 ### `@classmethod`&`@staticmethod`
-一般来说，要使用某个类的方法，需要先实例化一个对象再调用方法,而使用`@staticmethod`或`@classmethod`，就可以不需要实例化，直接类名.方法名()来调用
+一般来说，要使用某个类的方法，需要先实例化一个对象再调用方法，而使用`@staticmethod`或`@classmethod`，就可以不需要实例化，直接类名.方法名()来调用
 * `@staticmethod`不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样
 * `@classmethod`不需要self参数，但第一个参数需要是表示自身类的cls参数
 ```python

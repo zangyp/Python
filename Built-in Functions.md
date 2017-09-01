@@ -135,7 +135,8 @@ with open('/path/to/file', 'r') as f: # 这种方式不必调用f.close()
 * name:类的名称
 * bases:基类的元组
 * dict:字典，类内定义的命名空间变量  
-`isinstance()`与`type()`区别：
+
+`isinstance()`与`type()`区别：  
 * `type()` 不会认为子类是一种父类类型，不考虑继承关系
 * `isinstance()` 会认为子类是一种父类类型，考虑继承关系
 如果要判断两个类型是否相同推荐使用 `isinstance()`
